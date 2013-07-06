@@ -1,6 +1,7 @@
 #!/usr/bin/env python
+#This script controls buttons 0, 1, and 2, which are built into the Piface.
+#It controls the built-in relay which is hooked up to a small motor or light.
 
-import time
 import piface.pfio as pfio
 
 pfio.init()
