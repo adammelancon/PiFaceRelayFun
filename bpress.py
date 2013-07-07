@@ -34,6 +34,7 @@ def relayoff():
             return
 
 def exitscript():
+    pfio.digital_write(1,0)
     print "Exiting. Thanks for playing!"
     exit()
 
