@@ -8,9 +8,6 @@ from time import gmtime, strftime
 
 pfio.init()
 
-#this url is the middle frame with the incident list at lafayette911.org
-#soup = BeautifulSoup(page.read())  # Moved into the loop
-
 # A class to controll the relay
 class Bpress:
     def relayon(self):
@@ -45,50 +42,33 @@ def get_incidents():
 
     # Find the second table which has the incidents and find the individual row$
     try:
-        print "New Incident Loop:\n" + str(incidents)
-        lookfor = "AMBASSADOR"
+        lookfor = "AMBASSADOR" # What street to light up for.
         for i in soup.findAll('table')[1].findAll('tr'):
-            incidents.append(i.get_text()) # Add the text from the row to the list
+            incidents.append(i.get_text()) # Add the text from the row to the incidents list
 
     except IndexError:
+        print "=" * 20
         print "No incidents on" + " " + lookfor
         #piface.relayoff()
         print strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print str(len(incidents) - 1) + " " + "Incidents"
         print str(incidents)
-        print "=" * 20
-        incidents = []
-        print "******"
-        print "Incident after clear"
-        print incidents
-        print "******"
     
     if filter(lambda x: lookfor in x,incidents):
+        print "=" * 20
         print "Incident reported on" + " " + lookfor
        #piface.relayon()
         print strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print str(len(incidents) - 1) + " " + "Incidents"
         print str(incidents)
-        print "=" * 20
-        incidents = []
-        print "******"
-        print "Incident after clear"
-        print incidents
-        print "******"
     
     else:
+        print "=" * 20
         print "No incidents on" + " " + lookfor
        #piface.relayoff()
         print strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print str(len(incidents) - 1) + " " + "Incidents"
         print str(incidents)
-        print "=" * 20
-        incidents = []
-        print "******"
-        print "Incident after clear"
-        print incidents
-        print "******"
-
 
     time.sleep(10)
 
