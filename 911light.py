@@ -39,8 +39,7 @@ def get_incidents():
     soup = BeautifulSoup(page.read())
     incidents = []
 
-
-    # Find the second table which has the incidents and find the individual row$
+    # Find the second table which has the incidents and find the individual row.
     try:
         lookfor = "AMBASSADOR" # What street to light up for.
         for i in soup.findAll('table')[1].findAll('tr'):
