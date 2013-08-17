@@ -45,30 +45,30 @@ def get_incidents():
         for i in soup.findAll('table')[1].findAll('tr'):
             incidents.append(i.get_text()) # Add the text from the row to the incidents list
 
+        if filter(lambda x: lookfor in x,incidents):
+            print "=" * 20
+            print "Incident reported on" + " " + lookfor
+            piface.relayon()
+            print strftime("%Y-%m-%d %H:%M:%S", gmtime())
+            print str(len(incidents) - 1) + " " + "Incidents"
+            print str(incidents)
+    
+        else:
+            print "=" * 20
+            print "No incidents on" + " " + lookfor
+            piface.relayoff()
+            print strftime("%Y-%m-%d %H:%M:%S", gmtime())
+            print str(len(incidents) - 1) + " " + "Incidents"
+            print str(incidents)
+
     except IndexError:
         print "=" * 20
         print "No incidents on" + " " + lookfor
-        #piface.relayoff()
+        piface.relayoff()
         print strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print str(len(incidents) - 1) + " " + "Incidents"
         print str(incidents)
     
-    if filter(lambda x: lookfor in x,incidents):
-        print "=" * 20
-        print "Incident reported on" + " " + lookfor
-       #piface.relayon()
-        print strftime("%Y-%m-%d %H:%M:%S", gmtime())
-        print str(len(incidents) - 1) + " " + "Incidents"
-        print str(incidents)
-    
-    else:
-        print "=" * 20
-        print "No incidents on" + " " + lookfor
-       #piface.relayoff()
-        print strftime("%Y-%m-%d %H:%M:%S", gmtime())
-        print str(len(incidents) - 1) + " " + "Incidents"
-        print str(incidents)
-
     time.sleep(10)
 
 while True:
